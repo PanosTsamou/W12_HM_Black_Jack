@@ -2,6 +2,7 @@ package com.codeclan.example;
 
 import com.codeclan.example.cards.Card;
 import com.codeclan.example.hummans.Dealer;
+import com.codeclan.example.hummans.Person;
 import com.codeclan.example.hummans.Player;
 
 import java.util.ArrayList;
@@ -51,13 +52,41 @@ public class Table {
     public void shareCards(){
         for (Player player : players){
             ArrayList<Card> giveCards = new ArrayList<>();
-            giveCards.add(dealer.removeCard(index));
-            giveCards.add(dealer.removeCard(index));
+            giveCards.add(dealer.removeCard());
+            giveCards.add(dealer.removeCard());
             player.setMyCards(giveCards);
         }
         ArrayList<Card> dealersCards = new ArrayList<>();
-        dealersCards.add(dealer.removeCard(index));
-        dealersCards.add(dealer.removeCard(index));
+        dealersCards.add(dealer.removeCard());
+        dealersCards.add(dealer.removeCard());
         dealer.setMyCards(dealersCards);
+    }
+
+    public void winOrLose(){
+        for (Player player : players) {
+            if (dealer.getPoints() > 21 || dealer.getPoints() < player.getPoints()) {
+                player.winTheBet();
+            } else if (dealer.getPoints() == 21 || dealer.getPoints() > player.getPoints()) {
+                player.lostBet();
+            } else {
+                player.addBetBackToBalance();
+            }
+            dealer.addCardsBackToDeck(player.getMyCards());
+            player.emptyMyCards();
+        }
+        dealer.addCardsBackToDeck(dealer.getMyCards());
+        dealer.emptyMyCards();
+    }
+
+    public void twistCards(Person person){
+        if (players.contains(person)){
+            person.addCardInMyCards(dealer.removeCard());
+        } else if (person == dealer) {
+            while (person.getPoints() < 16){
+                person.addCardInMyCards(dealer.removeCard());
+            }
+            winOrLose();
+
+        }
     }
 }

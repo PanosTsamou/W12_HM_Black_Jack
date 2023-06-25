@@ -22,6 +22,23 @@ public class Player extends Person{
     }
 
     public void setBet(double bet) {
+        this.balance -= bet;
         this.bet = bet;
     }
+
+    public  void winTheBet(){
+        this.balance += 2 * getBet();
+        this.bet=0;
+    }
+
+    public void lostBet() {
+        this.bet = 0;
+    }
+
+    public void addBetBackToBalance() {
+        this.balance += getBet();
+        this.bet = 0;
+    }
+
+
 }

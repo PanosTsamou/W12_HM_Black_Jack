@@ -30,4 +30,17 @@ public abstract class Person {
     public void setMyCards(ArrayList<Card> myCards) {
         this.myCards = myCards;
     }
+
+    public int getPoints(){
+        int totalPoints = 0;
+        for (Card card : myCards){
+            totalPoints += card.getValue();
+        }
+        return  totalPoints;
+    }
+
+
+    public void addCardInMyCards(Card card) {
+        myCards.add(card);
+    }
 }
