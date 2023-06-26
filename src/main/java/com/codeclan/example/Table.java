@@ -85,8 +85,6 @@ public class Table {
             while (person.getPoints() < 16){
                 person.addCardInMyCards(dealer.removeCard());
             }
-            winOrLose();
-
         }
     }
 }

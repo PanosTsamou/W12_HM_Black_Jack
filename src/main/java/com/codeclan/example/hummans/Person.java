@@ -43,4 +43,8 @@ public abstract class Person {
     public void addCardInMyCards(Card card) {
         myCards.add(card);
     }
+
+    public int getNumberOfCards(){
+        return myCards.size();
+    }
 }

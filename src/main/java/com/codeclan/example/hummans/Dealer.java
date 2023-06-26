@@ -25,4 +25,8 @@ public class Dealer extends Person{
         int rand_num = random.nextInt(deck.getNumberOfDecks());
         return rand_num;
     }
+
+    public int getDeckSize() {
+        return deck.getDeckLength();
+    }
 }

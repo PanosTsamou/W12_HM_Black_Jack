@@ -22,8 +22,11 @@ public class Player extends Person{
     }
 
     public void setBet(double bet) {
-        this.balance -= bet;
-        this.bet = bet;
+        if (bet <= this.balance){
+            this.balance -= bet;
+            this.bet = bet;
+        }
+
     }
 
     public  void winTheBet(){
