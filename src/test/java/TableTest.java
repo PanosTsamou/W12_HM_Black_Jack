@@ -51,6 +51,7 @@ public class TableTest {
     @Test
     public void canShareCardsToPlayers(){
         table.setPlayers(player);
+        table.putBets(player, 150);
         table.shareCards();
         assertEquals(2, player.getNumberOfCards());
         assertEquals(2, dealer.getNumberOfCards());

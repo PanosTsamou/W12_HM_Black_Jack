@@ -50,16 +50,13 @@ public class Table {
     }
 
     public void shareCards(){
-        for (Player player : players){
-            ArrayList<Card> giveCards = new ArrayList<>();
-            giveCards.add(dealer.removeCard());
-            giveCards.add(dealer.removeCard());
-            player.setMyCards(giveCards);
+        for (int i = 0; i < 2; i++){
+            for (Player player : players){
+                player.addCardInMyCards(dealer.removeCard());
+            }
+            dealer.addCardInMyCards(dealer.removeCard());
         }
-        ArrayList<Card> dealersCards = new ArrayList<>();
-        dealersCards.add(dealer.removeCard());
-        dealersCards.add(dealer.removeCard());
-        dealer.setMyCards(dealersCards);
+
     }
 
     public void winOrLose(){
